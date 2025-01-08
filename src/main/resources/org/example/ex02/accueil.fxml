@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="525.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.Accueil">
+   <children>
+      <Label contentDisplay="CENTER" layoutX="21.0" layoutY="27.0" prefHeight="58.0" prefWidth="718.0" text="Bienvenue dans le gestionnaire de projets ! ">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <Button fx:id="boutton_employes" alignment="TOP_CENTER" contentDisplay="BOTTOM" graphicTextGap="40.0" layoutX="56.0" layoutY="113.0" mnemonicParsing="false" onAction="#openEmployes" prefHeight="366.0" prefWidth="324.0" text="Utilisateurs">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <graphic>
+            <ImageView cache="true" fitHeight="310.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/user.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="boutton_projets" alignment="TOP_CENTER" contentDisplay="BOTTOM" graphicTextGap="40.0" layoutX="380.0" layoutY="113.0" mnemonicParsing="false" onAction="#openProjets" prefHeight="366.0" prefWidth="324.0" text="Projets">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="205.0" fitWidth="236.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/projects.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

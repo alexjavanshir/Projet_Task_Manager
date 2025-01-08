@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.ModifierEmploye">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="668.0" text="Modification">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="654.0" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="107.0" prefWidth="267.0">
+               <children>
+                  <Label text="Anciennes informations">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label />
+                  <Label text="Nom Prénom" />
+                  <TextField fx:id="ancienNom" editable="false" prefHeight="26.0" prefWidth="156.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Numéro de téléphone" />
+                  <TextField fx:id="ancienTelephone" editable="false">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Adresse E-mail" />
+                  <TextField fx:id="ancienEmail" editable="false">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Projet" />
+                  <TextField fx:id="ancienProjet" editable="false">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="107.0" prefWidth="54.0" />
+            <VBox prefHeight="107.0" prefWidth="270.0">
+               <children>
+                  <Label alignment="TOP_LEFT" contentDisplay="CENTER" text="Nouvelles informations">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label />
+                  <Label text="Nom Prénom" />
+                  <TextField fx:id="newNom">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Numéro de téléphone" />
+                  <TextField fx:id="newTelephone">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Adresse E-mail" />
+                  <TextField fx:id="newEmail">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Projet" />
+                  <MenuButton fx:id="newProjet" mnemonicParsing="false" onAction="#menuBoutton" prefHeight="26.0" prefWidth="279.0">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </MenuButton>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="90.0" prefWidth="643.0">
+         <children>
+            <Button fx:id="boutton_modifierEPY" mnemonicParsing="false" onAction="#modifierEmploye" prefHeight="31.0" prefWidth="167.0" text="Modifier">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Label prefHeight="18.0" prefWidth="25.0" />
+            <Button fx:id="boutton_fermer" mnemonicParsing="false" onAction="#fermer" prefHeight="31.0" prefWidth="166.0" text="Fermer">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
