@@ -49,28 +49,19 @@ public class AjouterEmploye{
 
     @FXML
     private void ajouterEmploye(ActionEvent event){
-        String nomPrenom = nomPrenomField.getText();
-        String numero = numeroField.getText();
-        String email = emailField.getText();
-
-        if (nomPrenom.isEmpty() || numero.isEmpty() || email.isEmpty()){
+        if (nomPrenomField.getText().isEmpty() || numeroField.getText().isEmpty() || emailField.getText().isEmpty()){
             messageLabel.setText("Tous les champs doivent être remplis.");
             return;
         }
-
         try{
             String filePath = "src/main/resources/data/employes.csv";
             try (FileWriter writer = new FileWriter(filePath, true)){
-                writer.append(nomPrenom).append(",");
-                writer.append(numero).append(",");
-                writer.append(email).append(",");
-                writer.append("Pas encore de projet").append("\n");
+                writer.append(String.format("%s,%s,%s,\n", nomPrenomField.getText(), numeroField.getText(), emailField.getText()));
             }
-            if (employeNomList != null && employeTelephoneList != null && employeEmailList != null && employeProjetList != null){
-                employeNomList.add(nomPrenom);
-                employeTelephoneList.add(numero);
-                employeEmailList.add(email);
-                employeProjetList.add("Pas encore de projet");
+            if (employeNomList != null && employeTelephoneList != null && employeEmailList != null){
+                employeNomList.add(nomPrenomField.getText());
+                employeTelephoneList.add(numeroField.getText());
+                employeEmailList.add(emailField.getText());
             }
 
             messageLabel.setText("Ajout réussie !");
@@ -79,7 +70,6 @@ public class AjouterEmploye{
             emailField.clear();
         } catch (IOException e){
             messageLabel.setText("Erreur lors de l'écriture dans le fichier.");
-            e.printStackTrace();
         }
     }
 

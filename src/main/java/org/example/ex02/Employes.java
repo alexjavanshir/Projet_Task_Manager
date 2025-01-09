@@ -61,14 +61,14 @@ public class Employes{
                 }
             }
         } catch (IOException e){
-            e.printStackTrace();
+            messageLabel.setText("Erreur lors du chargement du fichier CSV");
         }
     }
 
     @FXML
     private void openAjouterEmploye() throws IOException{
-        Open open = new Open();
-        AjouterEmploye ajouterEmployeController = open.open("ajoutEmploye", "Ajouter un employé", true, AjouterEmploye.class);
+        Open opener = new Open();
+        AjouterEmploye ajouterEmployeController = opener.open("ajoutEmploye", "Ajouter un employé", true, AjouterEmploye.class);
 
         if (ajouterEmployeController != null){
             ajouterEmployeController.setEmployesController(this);
@@ -104,12 +104,10 @@ public class Employes{
             String filePath = "src/main/resources/data/employes.csv";
 
             try (FileWriter writer = new FileWriter(filePath)){
-                //formatage dans le fichier csv
                 for (int i = 0; i < employeNomList.size(); i++){
                     writer.write(String.format("%s,%s,%s,%s\n", employeNomList.get(i), employeTelephoneList.get(i), employeEmailList.get(i), employeProjetList.get(i)));
                 }
             } catch (IOException e){
-                e.printStackTrace();
                 messageLabel.setText("Erreur lors de la suppression de l'employé.");
                 return;
             }

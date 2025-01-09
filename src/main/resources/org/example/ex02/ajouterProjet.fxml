@@ -3,15 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="553.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.AjouterProjet{">
+<VBox alignment="CENTER" prefHeight="388.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.AjouterProjet">
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="86.0" prefWidth="760.0" text="Ajouter un Projet">
             <font>
@@ -27,6 +24,11 @@
             <children>
                 <VBox prefHeight="526.0" prefWidth="172.0">
                     <children>
+                  <Label>
+                     <font>
+                        <Font size="5.0" />
+                     </font>
+                  </Label>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="172.0" text="Intitulé">
                             <font>
                                 <Font size="20.0" />
@@ -34,17 +36,7 @@
                         </Label>
                   <Label>
                      <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                        <Label alignment="CENTER" prefHeight="0.0" prefWidth="172.0" text="Responsable">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                  <Label>
-                     <font>
-                        <Font size="13.0" />
+                        <Font size="22.0" />
                      </font>
                   </Label>
                         <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="4.0" prefWidth="172.0" text="Date de début">
@@ -54,7 +46,7 @@
                         </Label>
                   <Label>
                      <font>
-                        <Font size="16.0" />
+                        <Font size="22.0" />
                      </font>
                   </Label>
                   <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="172.0" text="Date de fin">
@@ -62,25 +54,9 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="172.0" text="Ajouter tâches">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="4.0" prefWidth="172.0" text="Membres">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
                     </children>
                 </VBox>
-                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="564.0">
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="197.0" prefWidth="564.0">
                     <children>
                         <TextField fx:id="intituleField" prefHeight="41.0" prefWidth="422.0" />
                         <Label>
@@ -88,69 +64,25 @@
                                 <Font size="15.0" />
                             </font>
                         </Label>
-                  <MenuButton fx:id="menuChoisirMembre" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                     </items>
-                  </MenuButton>
-                        <Label>
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Label>
-                  <DatePicker fx:id="debut" prefHeight="42.0" prefWidth="150.0" />
+                  <DatePicker fx:id="dateDebut" prefHeight="42.0" prefWidth="186.0" />
                   <Label>
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="fin" prefHeight="42.0" prefWidth="150.0" />
-                  <Label>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="564.0">
-                     <children>
-                        <Button fx:id="boutton_ajouterTache" mnemonicParsing="false" prefHeight="44.0" prefWidth="0.0" text="+">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                        <TextField fx:id="ecrireAjoutertache" prefHeight="35.0" prefWidth="146.0" />
-                        <ListView fx:id="listeTache" orientation="HORIZONTAL" prefHeight="44.0" prefWidth="451.0" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="24.0" prefWidth="564.0" />
-                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="564.0">
-                     <children>
-                        <Button fx:id="boutton_ajouterMembre" mnemonicParsing="false" prefHeight="44.0" prefWidth="0.0" text="+">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                        <MenuButton fx:id="menuChoisirMembre" mnemonicParsing="false" prefHeight="44.0" prefWidth="143.0">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Action 1" />
-                              <MenuItem mnemonicParsing="false" text="Action 2" />
-                           </items>
-                        </MenuButton>
-                        <ListView fx:id="listeMembre" orientation="HORIZONTAL" prefHeight="44.0" prefWidth="451.0" />
-                     </children>
-                  </HBox>
+                  <DatePicker fx:id="dateFin" prefHeight="42.0" prefWidth="188.0" />
                     </children>
                 </VBox>
             </children>
         </HBox>
         <HBox alignment="CENTER" prefHeight="107.0" prefWidth="760.0">
             <children>
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterProjet" prefHeight="43.0" prefWidth="250.0" text="Ajouter">
+                <Button fx:id="boutonAjouter" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterProjet" prefHeight="43.0" prefWidth="250.0" text="Ajouter">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="boutton_fermerajouterPRJ" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#fermer" prefHeight="43.0" prefWidth="250.0" text="Fermer">
+                <Button fx:id="boutonFermer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#fermer" prefHeight="43.0" prefWidth="250.0" text="Fermer">
                     <font>
                         <Font size="20.0" />
                     </font>

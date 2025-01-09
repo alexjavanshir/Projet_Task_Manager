@@ -28,7 +28,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="boutton_openmodifierPRJ1" mnemonicParsing="false" onAction="#openModifierProjet" prefHeight="31.0" prefWidth="190.0" text="Afficher Détails">
+            <Button fx:id="boutton_openafficherPRJ" mnemonicParsing="false" onAction="#openAfficherProjet" prefHeight="31.0" prefWidth="190.0" text="Afficher Détails">
                <font>
                   <Font size="15.0" />
                </font>
@@ -48,27 +48,22 @@
       <ButtonBar prefHeight="40.0" prefWidth="200.0" />
       <HBox prefHeight="44.0" prefWidth="760.0">
          <children>
-            <Label alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="316.0" text="Intitulé">
+            <Label alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="329.0" text="Intitulé">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="126.0" text="Responsable">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="91.0" text="Début">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="71.0" text="Début">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="96.0" text="Fin">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="89.0" text="Fin">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="298.0" text="Membres">
+            <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="377.0" text="Membres">
                <font>
                   <Font size="20.0" />
                </font>
@@ -77,15 +72,13 @@
       </HBox>
       <HBox prefHeight="404.0" prefWidth="760.0">
          <children>
-            <ListView fx:id="listViewIntitule" prefHeight="361.0" prefWidth="518.0">
+            <ListView fx:id="listViewIntitule" prefHeight="370.0" prefWidth="503.0">
                <effect>
                   <ColorAdjust brightness="-0.2" />
                </effect></ListView>
-            <ListView fx:id="listViewResponsable" prefHeight="361.0" prefWidth="331.0" />
-            <ListView fx:id="listViewProgres" prefHeight="358.0" prefWidth="144.0" />
             <ListView fx:id="listViewDateDebut" prefHeight="361.0" prefWidth="283.0" />
             <ListView fx:id="listViewDateFin" prefHeight="361.0" prefWidth="282.0" />
-            <ListView fx:id="listViewMembres" prefHeight="361.0" prefWidth="516.0" />
+            <ListView fx:id="listViewMembres" prefHeight="370.0" prefWidth="574.0" />
          </children>
       </HBox>
    </children>

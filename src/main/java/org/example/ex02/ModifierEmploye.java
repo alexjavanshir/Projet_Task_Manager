@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.List;
 
-public class ModifierEmploye {
+public class ModifierEmploye{
     private int employeIndex = -1;
     @FXML
     public Button boutton_modifierEPY;
@@ -35,18 +35,18 @@ public class ModifierEmploye {
     @FXML
     private Label messageLabel;
     private Employes employesController;
-    public void setEmployesController(Employes controller) {
+    public void setEmployesController(Employes controller){
         this.employesController = controller;
     }
     @FXML
-    public void menuBoutton(ActionEvent actionEvent) {
+    public void menuBoutton(ActionEvent actionEvent){
         newProjet.getItems().clear();
 
         String path = "src/main/resources/data/projets.csv";
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        try(BufferedReader reader = new BufferedReader(new FileReader(path))){
             String ligne;
-            while ((ligne = reader.readLine()) != null) {
-                if (!ligne.trim().isEmpty()) {
+            while((ligne = reader.readLine()) != null){
+                if(!ligne.trim().isEmpty()){
                     String[] details = ligne.split(",");
                     String nomProjet = details[0];
                     MenuItem item = new MenuItem(nomProjet.trim());
@@ -55,13 +55,12 @@ public class ModifierEmploye {
                     newProjet.getItems().add(item);
                 }
             }
-        } catch (IOException e) {
+        } catch(IOException e){
             e.printStackTrace();
         }
     }
 
-
-    public void setEmployeDetails(String nom, String telephone, String email, String projet, int index) {
+    public void setEmployeDetails(String nom, String telephone, String email, String projet, int index){
         ancienNom.setText(nom);
         ancienTelephone.setText(telephone);
         ancienEmail.setText(email);
@@ -70,12 +69,13 @@ public class ModifierEmploye {
         menuBoutton(null);
     }
     @FXML
-    public void modifierEmploye(ActionEvent actionEvent) {
-        if (newNom.getText().isEmpty() || newTelephone.getText().isEmpty() || newEmail.getText().isEmpty()) {
+    public void modifierEmploye(ActionEvent actionEvent){
+        //A REGLER POUR LE PROJET CA AJOUTE TOUT LES DETAIL DE PROJET.CSV
+        if(newNom.getText().isEmpty() || newTelephone.getText().isEmpty() || newEmail.getText().isEmpty()){
             messageLabel.setText("Veuillez remplir tous les champs");
             return;
         }
-        try {
+        try{
             employesController.employeNomList.set(employeIndex, newNom.getText());
             employesController.employeTelephoneList.set(employeIndex, newTelephone.getText());
             employesController.employeEmailList.set(employeIndex, newEmail.getText());
@@ -84,35 +84,30 @@ public class ModifierEmploye {
 
             List<String> lines = getStrings(filePath);
 
-            try (FileWriter writer = new FileWriter(filePath)) {
-                for (String line : lines) {
+            try(FileWriter writer = new FileWriter(filePath)){
+                for(String line : lines){
                     writer.write(line + "\n");
                 }
             }
             fermer();
-        } catch (IOException e) {
+        } catch(IOException e){
             e.printStackTrace();
             messageLabel.setText("Erreur lors de la modification de l'employé");
         }
     }
 
 
-    private List<String> getStrings(String filePath) throws IOException {
+    private List<String> getStrings(String filePath) throws IOException{
         List<String> lines = new java.util.ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
             String line;
             int currentIndex = 0;
 
-            while ((line = reader.readLine()) != null) {
-                if (currentIndex == employeIndex) {
-                    lines.add(String.format("%s,%s,%s,%s",
-                            newNom.getText(),
-                            newTelephone.getText(),
-                            newEmail.getText(),
-                            newProjet.getText()
-                    ));
-                } else {
+            while((line = reader.readLine()) != null){
+                if(currentIndex == employeIndex){
+                    lines.add(String.format("%s,%s,%s,%s\n", newNom.getText(), newTelephone.getText(), newEmail.getText(), newProjet.getText()));
+                } else{
                     lines.add(line);
                 }
                 currentIndex++;
@@ -120,13 +115,9 @@ public class ModifierEmploye {
         }
         return lines;
     }
-
-
     @FXML
-    public void fermer() {
-        Stage stage = (Stage) newEmail.getScene().getWindow();
+    public void fermer(){
+        Stage stage =(Stage) newEmail.getScene().getWindow();
         stage.close();
     }
-
-
 }
