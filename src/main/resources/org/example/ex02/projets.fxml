@@ -5,38 +5,75 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.Projets">
    <children>
-      <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="913.0" text="Liste des projets">
+      <Label alignment="TOP_CENTER" prefHeight="51.0" prefWidth="913.0" text="Liste des projets">
          <font>
             <Font name="System Bold" size="35.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="64.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/projects.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Label>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="760.0">
          <children>
-            <Button fx:id="boutton_openajouterPRJ" mnemonicParsing="false" onAction="#openAjouterProjet" prefHeight="31.0" prefWidth="190.0" text="Ajouter">
+            <Button fx:id="boutton_openajouterPRJ" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#openAjouterProjet" prefHeight="37.0" prefWidth="190.0" text="Ajouter ">
                <font>
                   <Font size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/ajouter.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="boutton_openmodifierPRJ" mnemonicParsing="false" onAction="#openModifierProjet" prefHeight="31.0" prefWidth="190.0" text="Modifier">
+            <Button fx:id="boutton_openmodifierPRJ" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#openModifierProjet" prefHeight="37.0" prefWidth="190.0" text="Modifier ">
                <font>
                   <Font size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/modifier.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="boutton_openafficherPRJ" mnemonicParsing="false" onAction="#openAfficherProjet" prefHeight="31.0" prefWidth="190.0" text="Afficher Détails">
+            <Button fx:id="boutton_openafficherPRJ" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#openGererProjet" prefHeight="37.0" prefWidth="190.0" text="Gérer le projet ">
                <font>
                   <Font size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/taches.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="boutton_supprimerPRJ" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#supprimerProjet" prefHeight="31.0" prefWidth="190.0" text="Supprimer">
+            <Button fx:id="boutton_supprimerPRJ" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#supprimerProjet" prefHeight="37.0" prefWidth="190.0" text="Supprimer ">
                <font>
                   <Font size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/supprimer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </HBox>

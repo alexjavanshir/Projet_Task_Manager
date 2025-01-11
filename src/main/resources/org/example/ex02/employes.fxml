@@ -5,33 +5,63 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.Employes">
    <children>
-      <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="760.0" text="Liste des employés">
+      <Label alignment="TOP_CENTER" prefHeight="51.0" prefWidth="760.0" text="Liste des employés">
          <font>
             <Font name="System Bold" size="35.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="64.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/user.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Label>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="760.0">
          <children>
-            <Button fx:id="boutton_openajouterEPY" mnemonicParsing="false" onAction="#openAjouterEmploye" prefHeight="31.0" prefWidth="190.0" text="Ajouter">
+            <Button fx:id="boutton_openajouterEPY" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#openAjouterEmploye" prefHeight="39.0" prefWidth="190.0" text="Ajouter ">
                <font>
                   <Font size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/ajouter.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="boutton_openmodifierEPY" mnemonicParsing="false" onAction="#openModifierEmploye" prefHeight="31.0" prefWidth="190.0" text="Modifier">
+            <Button fx:id="boutton_openmodifierEPY" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#openModifierEmploye" prefHeight="39.0" prefWidth="190.0" text="Modifier ">
                <font>
                   <Font size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/modifier.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="boutton_supprimerEPY" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#supprimerEmploye" prefHeight="31.0" prefWidth="190.0" text="Supprimer">
+            <Button fx:id="boutton_supprimerEPY" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#supprimerEmploye" prefHeight="39.0" prefWidth="190.0" text="Supprimer ">
                <font>
                   <Font size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/supprimer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </HBox>

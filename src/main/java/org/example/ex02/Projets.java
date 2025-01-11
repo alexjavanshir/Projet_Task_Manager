@@ -25,6 +25,7 @@ public class Projets{
     final ObservableList<LocalDate> projetDateDebutList = FXCollections.observableArrayList();
     final ObservableList<LocalDate> projetDateFinList = FXCollections.observableArrayList();
     private final ObservableList<List<Membre>> projetMembresList = FXCollections.observableArrayList();
+    private final ObservableList<List<Tache>> projetTacheList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize(){
@@ -40,11 +41,11 @@ public class Projets{
         projetDateFinList.clear();
         projetMembresList.clear();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/data/projets.csv"))){
+        try(BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/data/projets.csv"))){
             String ligne;
-            while ((ligne = reader.readLine()) != null){
+            while((ligne = reader.readLine()) != null){
                 String[] details = ligne.split(",", -1);
-                if (details.length >= 4){
+                if(details.length >= 4){
                     projetIntituleList.add(details[0]);
                     projetDateDebutList.add(LocalDate.parse(details[1]));
                     projetDateFinList.add(LocalDate.parse(details[2]));
@@ -54,7 +55,7 @@ public class Projets{
                 }
             }
             updateMembresListView();
-        } catch (IOException e){
+        } catch(IOException e){
             messageLabel.setText("Erreur lors du chargement des projets");
         }
     }
@@ -68,7 +69,7 @@ public class Projets{
     private void openAjouterProjet(ActionEvent event) throws IOException{
         Open opener = new Open();
         AjouterProjet ajouterProjetController = opener.open("ajouterProjet", "Ajouter un projet", true, AjouterProjet.class);
-        if (ajouterProjetController != null){
+        if(ajouterProjetController != null){
             ajouterProjetController.setProjetsController(this);
             ajouterProjetController.setObservableLists(projetIntituleList, projetDateDebutList, projetDateFinList);
         }
@@ -77,10 +78,10 @@ public class Projets{
     @FXML
     private void openModifierProjet(ActionEvent event){
         int selectedIndex = listViewIntitule.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0){
+        if(selectedIndex >= 0){
             Open opener = new Open();
             ModifierProjet modifierProjetController = opener.open("modifierProjet", "Modifier un projet", true, ModifierProjet.class);
-            if (modifierProjetController != null){
+            if(modifierProjetController != null){
                 modifierProjetController.setProjetsController(this);
                 modifierProjetController.setProjetsDetails(projetIntituleList.get(selectedIndex), projetDateDebutList.get(selectedIndex), projetDateFinList.get(selectedIndex), selectedIndex);
             }
@@ -90,36 +91,47 @@ public class Projets{
         }
     }
     @FXML
-    private void openAfficherProjet(ActionEvent event){
-        //pass
+    private void openGererProjet(ActionEvent event){
+        int selectedIndex = listViewIntitule.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >= 0){
+            Open opener = new Open();
+            GestionnaireTache tacheController = opener.open("tache", "Gestionnaire de tâches", true, GestionnaireTache.class);
+            if(tacheController != null){
+                tacheController.setProjetsController(this);
+                tacheController.setProjetsDetails(projetIntituleList.get(selectedIndex), selectedIndex);
+
+            }
+        }
+        else{
+            messageLabel.setText("Veuillez sélectionner un projet");
+        }
     }
 
     @FXML
     private void supprimerProjet(){
         int selectedIndex = listViewIntitule.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0){
+        if(selectedIndex >= 0){
             projetIntituleList.remove(selectedIndex);
             projetDateDebutList.remove(selectedIndex);
             projetDateFinList.remove(selectedIndex);
-            projetMembresList.remove(selectedIndex);
+            if (selectedIndex < projetMembresList.size()) {
+                projetMembresList.remove(selectedIndex);
+            }
 
-            try (FileWriter writer = new FileWriter("src/main/resources/data/projets.csv")){
-                for (int i = 0; i < projetIntituleList.size(); i++){
-                    writer.write(String.format("%s,%s,%s,%s\n",
-                            projetIntituleList.get(i),
-                            projetDateDebutList.get(i),
-                            projetDateFinList.get(i),
-                            projetMembresList.get(i).stream()
-                                    .map(Membre::getNom)
-                                    .collect(Collectors.joining(";"))
-                    ));
+            try(FileWriter writer = new FileWriter("src/main/resources/data/projets.csv")){
+                for(int i = 0; i < projetIntituleList.size(); i++){
+                    writer.write(String.format("%s,%s,%s,", projetIntituleList.get(i), projetDateDebutList.get(i), projetDateFinList.get(i)));
+                    if(!projetMembresList.get(i).isEmpty()) {
+                        writer.write(String.format("%s\n", projetMembresList.get(i).stream().map(Membre::getNom).collect(Collectors.joining(";"))));
+                    }
                 }
                 messageLabel.setText("Projet supprimé avec succès");
-            } catch (IOException e){
+            } catch(IOException e){
                 messageLabel.setText("Erreur lors de la suppression");
             }
         } else{
             messageLabel.setText("Veuillez sélectionner un projet");
         }
     }
+
 }

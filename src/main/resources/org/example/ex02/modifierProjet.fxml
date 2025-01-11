@@ -4,6 +4,8 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -67,16 +69,30 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="77.0" prefWidth="643.0">
             <children>
-                <Button fx:id="boutton_modifierPRJ" mnemonicParsing="false" onAction="#modifierProjet" prefHeight="31.0" prefWidth="167.0" text="Modifier">
+                <Button fx:id="boutton_modifierPRJ" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#modifierProjet" prefHeight="38.0" prefWidth="167.0" text="Modifier ">
                     <font>
                         <Font size="15.0" />
                     </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/modifier.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                 </Button>
                 <Label prefHeight="18.0" prefWidth="25.0" />
-                <Button fx:id="boutton_fermer" mnemonicParsing="false" onAction="#fermer" prefHeight="31.0" prefWidth="166.0" text="Fermer">
+                <Button fx:id="boutton_fermer" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fermer" prefHeight="38.0" prefWidth="166.0" text="Fermer">
                     <font>
                         <Font size="15.0" />
                     </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/fermer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                 </Button>
             </children>
         </HBox>

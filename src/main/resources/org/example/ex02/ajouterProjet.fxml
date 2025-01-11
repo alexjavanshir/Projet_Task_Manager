@@ -4,16 +4,25 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" prefHeight="388.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.AjouterProjet">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="86.0" prefWidth="760.0" text="Ajouter un Projet">
+        <Label alignment="CENTER" prefHeight="86.0" prefWidth="760.0" text="Ajouter un Projet">
             <font>
                 <Font name="System Bold" size="35.0" />
             </font>
+         <graphic>
+            <ImageView fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/projects.png" />
+               </image>
+            </ImageView>
+         </graphic>
         </Label>
         <Label fx:id="messageLabel" textFill="RED">
             <font>
@@ -77,15 +86,29 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="107.0" prefWidth="760.0">
             <children>
-                <Button fx:id="boutonAjouter" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterProjet" prefHeight="43.0" prefWidth="250.0" text="Ajouter">
+                <Button fx:id="boutonAjouter" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#ajouterProjet" prefHeight="43.0" prefWidth="250.0" text="Ajouter ">
                     <font>
                         <Font size="20.0" />
                     </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/ajouter.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                 </Button>
-                <Button fx:id="boutonFermer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#fermer" prefHeight="43.0" prefWidth="250.0" text="Fermer">
+                <Button fx:id="boutonFermer" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fermer" prefHeight="43.0" prefWidth="250.0" text="Fermer ">
                     <font>
                         <Font size="20.0" />
                     </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/fermer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                 </Button>
             </children>
         </HBox>

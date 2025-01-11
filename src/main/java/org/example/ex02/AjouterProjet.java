@@ -40,7 +40,7 @@ public class AjouterProjet{
             return;
         }
         try(FileWriter writer = new FileWriter("src/main/resources/data/projets.csv", true)){
-            writer.append(String.format("%s,%s,%s,,\n",
+            writer.append(String.format("%s,%s,%s,\n",
                     intituleField.getText(),
                     dateDebut.getValue(),
                     dateFin.getValue()
