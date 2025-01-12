@@ -39,23 +39,22 @@ public class ModifierEmploye{
         this.employesController = controller;
     }
     @FXML
-    public void menuBoutton(ActionEvent actionEvent){
+    public void menuBoutton(ActionEvent actionEvent) {
         newProjet.getItems().clear();
 
         String path = "src/main/resources/data/projets.csv";
-        try(BufferedReader reader = new BufferedReader(new FileReader(path))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String ligne;
-            while((ligne = reader.readLine()) != null){
-                if(!ligne.trim().isEmpty()){
+            while ((ligne = reader.readLine()) != null) {
+                if (!ligne.trim().isEmpty()) {
                     String[] details = ligne.split(",");
                     String nomProjet = details[0];
                     MenuItem item = new MenuItem(nomProjet.trim());
-                    String finalLigne = ligne;
-                    item.setOnAction(event -> newProjet.setText(finalLigne.trim()));
+                    item.setOnAction(event -> newProjet.setText(nomProjet.trim()));
                     newProjet.getItems().add(item);
                 }
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -68,9 +67,9 @@ public class ModifierEmploye{
         employeIndex = index;
         menuBoutton(null);
     }
+
     @FXML
     public void modifierEmploye(ActionEvent actionEvent){
-        //A REGLER POUR LE PROJET CA AJOUTE TOUT LES DETAIL DE PROJET.CSV
         if(newNom.getText().isEmpty() || newTelephone.getText().isEmpty() || newEmail.getText().isEmpty()){
             messageLabel.setText("Veuillez remplir tous les champs");
             return;
@@ -88,6 +87,8 @@ public class ModifierEmploye{
                 for(String line : lines){
                     writer.write(line + "\n");
                 }
+            } catch (IOException e){
+                e.printStackTrace();
             }
             fermer();
         } catch(IOException e){

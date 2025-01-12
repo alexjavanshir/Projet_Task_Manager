@@ -2,14 +2,19 @@ package org.example.ex02;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Employes{
     @FXML
@@ -42,7 +47,7 @@ public class Employes{
         listViewProjet.setItems(employeProjetList);
     }
 
-    private void chargerDonneesDepuisCSV(){
+    void chargerDonneesDepuisCSV(){
         employeNomList.clear();
         employeTelephoneList.clear();
         employeEmailList.clear();
@@ -52,12 +57,13 @@ public class Employes{
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))){
             String ligne;
             while ((ligne = reader.readLine()) != null){
-                String[] details = ligne.split(",");
+                String[] details = ligne.split(",", -1);
                 if (details.length == 4){
                     employeNomList.add(details[0]);
                     employeTelephoneList.add(details[1]);
                     employeEmailList.add(details[2]);
                     employeProjetList.add(details[3]);
+
                 }
             }
         } catch (IOException e){
@@ -74,6 +80,7 @@ public class Employes{
             ajouterEmployeController.setEmployesController(this);
             ajouterEmployeController.setObservableLists(employeNomList, employeTelephoneList, employeEmailList, employeProjetList);
         }
+        chargerDonneesDepuisCSV();
     }
 
     @FXML
@@ -115,6 +122,12 @@ public class Employes{
         } else{
             messageLabel.setText("Veuillez sélectionner un employé à supprimer.");
         }
+    }
+
+    @FXML
+    private void fermerE(ActionEvent event){
+        Stage stage = (Stage) messageLabel.getScene().getWindow();
+        stage.close();
     }
 }
 

@@ -62,7 +62,6 @@ public class AjouterProjet{
             messageLabel.setText("Tous les champs doivent être remplis");
             return false;
         }
-
         if(dateFin.getValue().isBefore(dateDebut.getValue())){
             messageLabel.setText("La date de fin doit être après la date de début");
             return false;

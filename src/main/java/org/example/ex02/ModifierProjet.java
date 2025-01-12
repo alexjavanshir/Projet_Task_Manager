@@ -88,6 +88,8 @@ public class ModifierProjet{
                 }
                 currentIndex++;
             }
+        } catch (IOException e){
+            e.printStackTrace();
         }
         return lines;
     }

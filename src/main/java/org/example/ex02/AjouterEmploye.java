@@ -53,29 +53,32 @@ public class AjouterEmploye{
             messageLabel.setText("Tous les champs doivent être remplis.");
             return;
         }
-        try{
-            String filePath = "src/main/resources/data/employes.csv";
-            try (FileWriter writer = new FileWriter(filePath, true)){
-                writer.append(String.format("%s,%s,%s,\n", nomPrenomField.getText(), numeroField.getText(), emailField.getText()));
-            }
-            if (employeNomList != null && employeTelephoneList != null && employeEmailList != null){
+
+        String filePath = "src/main/resources/data/employes.csv";
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            writer.append(String.format("%s,%s,%s,Pas de projet\n", nomPrenomField.getText(), numeroField.getText(), emailField.getText()));
+            if (employeNomList != null && employeTelephoneList != null && employeEmailList != null) {
                 employeNomList.add(nomPrenomField.getText());
                 employeTelephoneList.add(numeroField.getText());
                 employeEmailList.add(emailField.getText());
             }
-
             messageLabel.setText("Ajout réussie !");
             nomPrenomField.clear();
             numeroField.clear();
             emailField.clear();
+
         } catch (IOException e){
             messageLabel.setText("Erreur lors de l'écriture dans le fichier.");
         }
+        finally {
+            employesController.chargerDonneesDepuisCSV();
+            }
+
     }
 
 
     @FXML
-    private void fermer(ActionEvent event){
+    private void fermer(ActionEvent event) {
         Stage stage = (Stage) messageLabel.getScene().getWindow();
         stage.close();
     }

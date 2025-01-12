@@ -15,6 +15,8 @@ public class Accueil {
     public Button boutton_employes;
     @FXML
     public Button boutton_projets;
+    @FXML
+    public Button boutton_calendrier;
 
 
     @FXML
@@ -26,6 +28,12 @@ public class Accueil {
     private void openProjets() throws IOException {
         Open openprojet = new Open();
         openprojet.open("projets", "Liste des projets", false, Projets.class);
+    }
+
+    @FXML
+    private void openCalendrier() throws IOException {
+        Open opencalendrier = new Open();
+        opencalendrier.open("calendrier", "Calendrier", false, Calendrier.class);
     }
 }
 
