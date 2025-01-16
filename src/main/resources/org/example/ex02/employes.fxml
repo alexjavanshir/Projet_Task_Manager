@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.Employes">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.Employes">
    <children>
       <Label alignment="TOP_CENTER" prefHeight="51.0" prefWidth="760.0" text="Liste des employés">
          <font>
@@ -25,7 +25,7 @@
             </ImageView>
          </graphic>
       </Label>
-      <HBox alignment="CENTER" prefHeight="108.0" prefWidth="760.0">
+      <HBox alignment="CENTER" prefHeight="91.0" prefWidth="760.0">
          <children>
             <Button fx:id="boutton_openajouterEPY" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#openAjouterEmploye" prefHeight="39.0" prefWidth="190.0" text="Ajouter ">
                <font>
@@ -95,16 +95,17 @@
             </Label>
          </children>
       </HBox>
-      <HBox prefHeight="404.0" prefWidth="760.0">
+      <HBox prefHeight="406.0" prefWidth="760.0">
          <children>
             <ListView fx:id="listViewNom" prefHeight="431.0" prefWidth="165.0">
                <effect>
                   <ColorAdjust brightness="-0.2" />
                </effect></ListView>
             <ListView fx:id="listViewTelephone" prefHeight="431.0" prefWidth="152.0" />
-            <ListView fx:id="listViewEmail" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listViewEmail" prefHeight="412.0" prefWidth="200.0" />
             <ListView fx:id="listViewProjet" prefHeight="431.0" prefWidth="242.0" />
          </children>
       </HBox>
+      <Button mnemonicParsing="false" onAction="#fermerE" prefHeight="26.0" prefWidth="792.0" text="Fermer" />
    </children>
 </VBox>

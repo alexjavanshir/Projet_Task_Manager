@@ -1,37 +1,26 @@
 package org.example.ex02;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
-import java.io.IOException;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 public class Accueil {
-    @FXML
-    public Button boutton_employes;
-    @FXML
-    public Button boutton_projets;
-    @FXML
-    public Button boutton_calendrier;
-
+    @FXML public Button boutton_employes;
+    @FXML public Button boutton_projets;
+    @FXML public Button boutton_calendrier;
 
     @FXML
-    private void openEmployes() throws IOException {
+    private void openEmployes() {
         Open openemployes = new Open();
         openemployes.open("employes", "Liste des employes", false, Employes.class);
     }
     @FXML
-    private void openProjets() throws IOException {
+    private void openProjets() {
         Open openprojet = new Open();
         openprojet.open("projets", "Liste des projets", false, Projets.class);
     }
-
     @FXML
-    private void openCalendrier() throws IOException {
+    private void openCalendrier() {
         Open opencalendrier = new Open();
         opencalendrier.open("calendrier", "Calendrier", false, Calendrier.class);
     }

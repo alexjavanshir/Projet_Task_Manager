@@ -4,15 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.*;
-import java.time.LocalDate;
-import java.util.Arrays;
 
 public class AjouterTache {
     @FXML private TextField nomField;
@@ -20,12 +16,7 @@ public class AjouterTache {
     @FXML private ComboBox<String> membreComboBox;
     @FXML private ComboBox<String> statutComboBox;
     @FXML private Label messageLabel;
-    @FXML private Button boutton_ajouterTCH;
-    @FXML private Button boutton_fermer;
-
-    private GestionnaireTache gestionnaireTacheController;
     private String projetIntitule;
-    private int projetIndex;
 
     private ObservableList<String> nomsTache = FXCollections.observableArrayList();
     private ObservableList<String> descriptionsTache = FXCollections.observableArrayList();
@@ -38,7 +29,6 @@ public class AjouterTache {
     }
 
     public void setGestionnaireTacheController(GestionnaireTache controller) {
-        this.gestionnaireTacheController = controller;
     }
 
     public void setProjetDetails(String intitule, ObservableList<String> nomTache,ObservableList<String> descriptionsTache, ObservableList<String> membresTache, ObservableList<String> statutsTache, int index) {
@@ -47,7 +37,6 @@ public class AjouterTache {
         this.descriptionsTache = descriptionsTache;
         this.membresTache = membresTache;
         this.statutsTache = statutsTache;
-        this.projetIndex = index;
         chargerMembres();
     }
 
@@ -95,12 +84,12 @@ public class AjouterTache {
             }
         }
     }
-        private void viderChamps(){
-            nomField.clear();
-            descriptionField.clear();
-            membreComboBox.getItems().clear();
-            statutComboBox.getItems().clear();
-        }
+    private void viderChamps(){
+        nomField.clear();
+        descriptionField.clear();
+        membreComboBox.getItems().clear();
+        statutComboBox.getItems().clear();
+    }
 
     @FXML
     private void fermer(ActionEvent event) {

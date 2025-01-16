@@ -82,7 +82,7 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="138.0" prefWidth="760.0">
             <children>
-                <Button fx:id="boutton_ajouterTCH" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#ajouter" prefHeight="43.0" prefWidth="250.0" text="Ajouter ">
+                <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#ajouter" prefHeight="43.0" prefWidth="250.0" text="Ajouter ">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -94,7 +94,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="boutton_fermer" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fermer" prefHeight="43.0" prefWidth="250.0" text="Fermer ">
+                <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fermer" prefHeight="43.0" prefWidth="250.0" text="Fermer ">
                     <font>
                         <Font size="20.0" />
                     </font>

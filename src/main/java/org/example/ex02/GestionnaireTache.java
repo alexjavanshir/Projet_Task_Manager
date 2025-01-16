@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +25,6 @@ public class GestionnaireTache {
     @FXML public ListView<String> descriptionTache;
     @FXML public ListView<String> membreTache;
     @FXML public ListView<String> statutTache;
-
-
     final ObservableList<String> nomsTache = FXCollections.observableArrayList();
     final ObservableList<String> descriptionsTache = FXCollections.observableArrayList();
     final ObservableList<String> membresTache = FXCollections.observableArrayList();

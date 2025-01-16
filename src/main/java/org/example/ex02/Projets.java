@@ -20,13 +20,10 @@ public class Projets{
     @FXML private ListView<LocalDate> listViewDateFin;
     @FXML private ListView<String> listViewMembres;
     @FXML private Label messageLabel;
-
     final ObservableList<String> projetIntituleList = FXCollections.observableArrayList();
     final ObservableList<LocalDate> projetDateDebutList = FXCollections.observableArrayList();
     final ObservableList<LocalDate> projetDateFinList = FXCollections.observableArrayList();
     private final ObservableList<List<Membre>> projetMembresList = FXCollections.observableArrayList();
-    private final ObservableList<List<Tache>> projetTacheList = FXCollections.observableArrayList();
-
 
     @FXML
     public void initialize(){
@@ -67,7 +64,7 @@ public class Projets{
         ));
     }
     @FXML
-    private void openAjouterProjet(ActionEvent event) throws IOException{
+    private void openAjouterProjet(ActionEvent event) {
         Open opener = new Open();
         AjouterProjet ajouterProjetController = opener.open("ajouterProjet", "Ajouter un projet", true, AjouterProjet.class);
         if(ajouterProjetController != null){
@@ -106,68 +103,6 @@ public class Projets{
             messageLabel.setText("Veuillez sélectionner un projet");
         }
     }
-
-    /*@FXML
-    private void supprimerProjet() {
-        int selectedIndex = listViewIntitule.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0) {
-            String projetASupprimer = projetIntituleList.get(selectedIndex);
-
-            projetIntituleList.remove(selectedIndex);
-            projetDateDebutList.remove(selectedIndex);
-            projetDateFinList.remove(selectedIndex);
-            if (selectedIndex < projetMembresList.size()) {
-                projetMembresList.remove(selectedIndex);
-            }
-
-            try (FileWriter writer = new FileWriter("src/main/resources/data/projets.csv")) {
-                for (int i = 0; i < projetIntituleList.size(); i++) {
-                    writer.write(String.format("%s,%s,%s",
-                            projetIntituleList.get(i),
-                            projetDateDebutList.get(i),
-                            projetDateFinList.get(i)));
-
-                    if (i < projetMembresList.size() && projetMembresList.get(i) != null && !projetMembresList.get(i).isEmpty()) {
-                        writer.write("," + projetMembresList.get(i).stream()
-                                .map(Membre::getNom)
-                                .collect(Collectors.joining(";")));
-                    } else {
-                        writer.write(",");
-                    }
-                    writer.write("\n");
-                }
-            } catch (IOException e) {
-                messageLabel.setText("Erreur lors de la suppression du projet");
-                return;
-            }
-            try {
-                List<String[]> employes = new ArrayList<>();
-                try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/data/employes.csv"))) {
-                    String ligne;
-                    while ((ligne = reader.readLine()) != null) {
-                        String[] details = ligne.split(",");
-                        if (details.length >= 4 && details[3].trim().equals(projetASupprimer.trim())) {
-                            details[3] = "Pas de projet";
-                        }
-                        employes.add(details);
-                    }
-                } catch (IOException e){e.printStackTrace();}
-
-                FileWriter writer = new FileWriter("src/main/resources/data/employes.csv");
-                for (String[] employe : employes) {
-                    writer.write(String.join(",", employe) + "\n");
-                }
-                if (employesController != null) {
-                    employesController.chargerDonneesDepuisCSV();}
-                messageLabel.setText("Projet supprimé avec succès");
-            } catch (IOException e) {
-                messageLabel.setText("Erreur lors de la mise à jour des employés");
-            }
-
-        } else {
-            messageLabel.setText("Veuillez sélectionner un projet");
-        }
-    }*/
 
     @FXML
     private void supprimerProjet() {

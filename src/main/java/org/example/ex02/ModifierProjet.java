@@ -79,7 +79,7 @@ public class ModifierProjet{
                 currentIndex++;
             }
         } catch (IOException e){
-            e.printStackTrace();
+            messageLabel.setText("Erreur lors de la réécriture du fichier");
         }
         return lines;
     }

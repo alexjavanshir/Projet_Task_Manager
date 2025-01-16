@@ -17,8 +17,7 @@ public class AjouterProjet{
     @FXML public Label messageLabel;
     @FXML public Button boutonAjouter;
     @FXML public Button boutonFermer;
-    @FXML
-    private Projets projetsController;
+    @FXML private Projets projetsController;
 
     private ObservableList<String> projetIntituleList;
     private ObservableList<LocalDate> projetDateDebutList;

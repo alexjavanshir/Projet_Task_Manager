@@ -10,7 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ex02.Calendrier">
    <children>
-      <Label fx:id="titreLabel" alignment="CENTER" prefHeight="50.0" prefWidth="800.0" text="Calendrier des tâches">
+      <Label fx:id="titreLabel" alignment="CENTER" prefHeight="50.0" prefWidth="800.0" text="Calendrier des projets">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -21,9 +21,9 @@
          </font>
       </Label>
       <ListView fx:id="projetListView" prefHeight="358.0" prefWidth="888.0" />
-      <VBox alignment="CENTER" prefHeight="62.0" prefWidth="800.0">
+      <VBox alignment="CENTER" prefHeight="165.0" prefWidth="800.0">
          <children>
-            <Label text="Work in progress" textFill="RED">
+            <Label alignment="CENTER" prefHeight="50.0" prefWidth="657.0" text="⚠ Work in progress ⚠" textFill="RED">
                <font>
                   <Font name="System Bold" size="33.0" />
                </font>

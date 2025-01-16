@@ -11,39 +11,26 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class AjouterEmploye{
-    @FXML
-    public Button boutton_ajouterEPY;
-    @FXML
-    public Button boutton_fermerajouterEPY;
+    @FXML public Button boutton_ajouterEPY;
+    @FXML public Button boutton_fermerajouterEPY;
+    @FXML private TextField nomPrenomField;
+    @FXML private TextField numeroField;
+    @FXML private TextField emailField;
+    @FXML private Label messageLabel;
+    @FXML private Employes employesController;
+    @FXML private ObservableList<String> employeNomList;
+    @FXML private ObservableList<String> employeTelephoneList;
+    @FXML private ObservableList<String> employeEmailList;
 
-    @FXML
-    private TextField nomPrenomField;
-    @FXML
-    private TextField numeroField;
-    @FXML
-    private TextField emailField;
-    @FXML
-    private Label messageLabel;
-    @FXML
-    private Employes employesController;
     @FXML
     public void setEmployesController(Employes employesController){
         this.employesController = employesController;
     }
-    @FXML
-    private ObservableList<String> employeNomList;
-    @FXML
-    private ObservableList<String> employeTelephoneList;
-    @FXML
-    private ObservableList<String> employeEmailList;
-    @FXML
-    private ObservableList<String> employeProjetList;
 
-    public void setObservableLists(ObservableList<String> employeNomList, ObservableList<String> employeTelephoneList, ObservableList<String> employeEmailList, ObservableList<String> employeProjetList){
+    public void setObservableLists(ObservableList<String> employeNomList, ObservableList<String> employeTelephoneList, ObservableList<String> employeEmailList){
         this.employeNomList = employeNomList;
         this.employeTelephoneList = employeTelephoneList;
         this.employeEmailList = employeEmailList;
-        this.employeProjetList = employeProjetList;
     }
 
     @FXML
@@ -71,10 +58,8 @@ public class AjouterEmploye{
         }
         finally {
             employesController.chargerDonneesDepuisCSV();
-            }
-
+        }
     }
-
 
     @FXML
     private void fermer(ActionEvent event) {

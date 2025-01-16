@@ -12,29 +12,20 @@ import java.util.List;
 
 public class ModifierEmploye{
     private int employeIndex = -1;
-    @FXML
-    public Button boutton_modifierEPY;
-    @FXML
-    public Button boutton_fermer;
-    @FXML
-    private TextField ancienNom;
+    @FXML public Button boutton_modifierEPY;
+    @FXML public Button boutton_fermer;
+    @FXML private TextField ancienNom;
     @FXML
     private TextField ancienTelephone;
-    @FXML
-    private TextField ancienEmail;
-    @FXML
-    private TextField newNom;
-    @FXML
-    private TextField ancienProjet;
-    @FXML
-    private MenuButton newProjet;
-    @FXML
-    private TextField newTelephone;
-    @FXML
-    private TextField newEmail;
-    @FXML
-    private Label messageLabel;
+    @FXML private TextField ancienEmail;
+    @FXML private TextField newNom;
+    @FXML private TextField ancienProjet;
+    @FXML private MenuButton newProjet;
+    @FXML private TextField newTelephone;
+    @FXML private TextField newEmail;
+    @FXML private Label messageLabel;
     private Employes employesController;
+
     public void setEmployesController(Employes controller){
         this.employesController = controller;
     }
@@ -56,7 +47,7 @@ public class ModifierEmploye{
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            messageLabel.setText("Un problème est survenu dans le chargement des bouttons");
         }
     }
 
@@ -89,15 +80,13 @@ public class ModifierEmploye{
                     writer.write(line + "\n");
                 }
             } catch (IOException e){
-                e.printStackTrace();
+                messageLabel.setText("Erreur lors de la réécriture après modification");
             }
             fermer();
         } catch(IOException e){
-            e.printStackTrace();
             messageLabel.setText("Erreur lors de la modification de l'employé");
         }
     }
-
 
     private List<String> getStrings(String filePath) throws IOException{
         List<String> lines = new java.util.ArrayList<>();

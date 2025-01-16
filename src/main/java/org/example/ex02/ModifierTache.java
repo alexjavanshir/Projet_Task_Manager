@@ -13,22 +13,15 @@ import java.util.List;
 public class ModifierTache {
     private int tacheIndex = -1;
     private String projetIntitule;
-
-    @FXML private Button boutton_modifier;
-    @FXML private Button boutton_fermer;
-
     @FXML private TextField newNom;
     @FXML private TextField newDescription;
     @FXML private ComboBox<String> newMembre;
     @FXML private ComboBox<String> newStatut;
-
     @FXML private TextField ancienNom;
     @FXML private TextField ancienDescription;
     @FXML private TextField ancienMembre;
     @FXML private TextField ancienStatut;
-
     @FXML private Label messageLabel;
-
     private GestionnaireTache gestionnaireTacheController;
 
     @FXML
@@ -113,7 +106,7 @@ public class ModifierTache {
                 currentIndex++;
             }
         } catch (IOException e){
-            e.printStackTrace();
+            messageLabel.setText("Erreur lors de la réécriture du fichier");
         }
         return lines;
     }

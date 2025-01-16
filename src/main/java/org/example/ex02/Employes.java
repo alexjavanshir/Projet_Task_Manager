@@ -13,24 +13,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
 public class Employes{
-    @FXML
-    public Button boutton_openajouterEPY;
-    @FXML
-    public Button boutton_openmodifierEPY;
-    @FXML
-    public Button boutton_supprimerEPY;
-    @FXML
-    private ListView<String> listViewNom;
-    @FXML
-    private ListView<String> listViewTelephone;
-    @FXML
-    private ListView<String> listViewEmail;
-    @FXML
-    private ListView<String> listViewProjet;
-    @FXML
-    private Label messageLabel;
+    @FXML public Button boutton_openajouterEPY;
+    @FXML public Button boutton_openmodifierEPY;
+    @FXML public Button boutton_supprimerEPY;
+    @FXML private ListView<String> listViewNom;
+    @FXML private ListView<String> listViewTelephone;
+    @FXML private ListView<String> listViewEmail;
+    @FXML private ListView<String> listViewProjet;
+    @FXML private Label messageLabel;
     final ObservableList<String> employeNomList = FXCollections.observableArrayList();
     final ObservableList<String> employeTelephoneList = FXCollections.observableArrayList();
     final ObservableList<String> employeEmailList = FXCollections.observableArrayList();
@@ -70,19 +61,19 @@ public class Employes{
     }
 
     @FXML
-    private void openAjouterEmploye() throws IOException{
+    private void openAjouterEmploye(){
         Open opener = new Open();
         AjouterEmploye ajouterEmployeController = opener.open("ajoutEmploye", "Ajouter un employé", true, AjouterEmploye.class);
 
         if (ajouterEmployeController != null){
             ajouterEmployeController.setEmployesController(this);
-            ajouterEmployeController.setObservableLists(employeNomList, employeTelephoneList, employeEmailList, employeProjetList);
+            ajouterEmployeController.setObservableLists(employeNomList, employeTelephoneList, employeEmailList);
         }
         chargerDonneesDepuisCSV();
     }
 
     @FXML
-    private void openModifierEmploye() throws IOException{
+    private void openModifierEmploye(){
         int selectedIndex = listViewNom.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             Open open = new Open();
@@ -97,7 +88,7 @@ public class Employes{
     }
 
     @FXML
-    private void supprimerEmploye() throws IOException{
+    private void supprimerEmploye(){
         int selectedIndex = listViewNom.getSelectionModel().getSelectedIndex();
 
         if (selectedIndex >= 0){
