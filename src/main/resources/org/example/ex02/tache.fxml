@@ -39,7 +39,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="171.0" prefWidth="763.0">
                <children>
-                  <Button fx:id="boutton_ajoutertache" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" text="Ajouter tâches ">
+                  <Button fx:id="boutton_ajoutertache" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#ajouterTache" prefHeight="30.0" prefWidth="146.0" text="Ajouter tâches ">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -51,7 +51,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="boutton_modifiertache" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" text="Modifier ">
+                  <Button fx:id="boutton_modifiertache" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#modifierTache" prefHeight="30.0" prefWidth="146.0" text="Modifier ">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -68,7 +68,7 @@
                         <Font size="14.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="84.0" onDragDetected="#supprimerTache" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../images/supprimer.png" />
                            </image>
@@ -124,7 +124,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="boutton_fermer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" text="Fermer">
+            <Button fx:id="boutton_fermer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#fermer" prefHeight="30.0" prefWidth="165.0" text="Fermer">
                <font>
                   <Font size="14.0" />
                </font>

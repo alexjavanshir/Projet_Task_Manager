@@ -23,6 +23,11 @@
       <ListView fx:id="projetListView" prefHeight="358.0" prefWidth="888.0" />
       <VBox alignment="CENTER" prefHeight="62.0" prefWidth="800.0">
          <children>
+            <Label text="Work in progress" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+            </Label>
             <Button fx:id="boutton_fermer" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#fermer" prefHeight="39.0" prefWidth="141.0" text="Fermer ">
                <font>
                   <Font size="15.0" />

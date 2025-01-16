@@ -14,8 +14,6 @@ public class Projets{
     @FXML public Button boutton_openajouterPRJ;
     @FXML public Button boutton_openmodifierPRJ;
     @FXML public Button boutton_openafficherPRJ;
-    @FXML
-    private Employes employesController;
     @FXML public Button boutton_supprimerPRJ;
     @FXML private ListView<String> listViewIntitule;
     @FXML private ListView<LocalDate> listViewDateDebut;
@@ -29,9 +27,7 @@ public class Projets{
     private final ObservableList<List<Membre>> projetMembresList = FXCollections.observableArrayList();
     private final ObservableList<List<Tache>> projetTacheList = FXCollections.observableArrayList();
 
-    public void setEmployesController(Employes employes){
-        this.employesController = employes;
-    }
+
     @FXML
     public void initialize(){
         chargerDonneesCSV();
@@ -111,7 +107,7 @@ public class Projets{
         }
     }
 
-    @FXML
+    /*@FXML
     private void supprimerProjet() {
         int selectedIndex = listViewIntitule.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
@@ -161,14 +157,82 @@ public class Projets{
                 for (String[] employe : employes) {
                     writer.write(String.join(",", employe) + "\n");
                 }
+                if (employesController != null) {
+                    employesController.chargerDonneesDepuisCSV();}
                 messageLabel.setText("Projet supprimé avec succès");
             } catch (IOException e) {
                 messageLabel.setText("Erreur lors de la mise à jour des employés");
             }
-            employesController.chargerDonneesDepuisCSV();
 
         } else {
             messageLabel.setText("Veuillez sélectionner un projet");
+        }
+    }*/
+
+    @FXML
+    private void supprimerProjet() {
+        int selectedIndex = listViewIntitule.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            String projetASupprimer = projetIntituleList.get(selectedIndex);
+
+            projetIntituleList.remove(selectedIndex);
+            projetDateDebutList.remove(selectedIndex);
+            projetDateFinList.remove(selectedIndex);
+            if (selectedIndex < projetMembresList.size()) {
+                projetMembresList.remove(selectedIndex);
+            }
+
+            // Update projects file
+            try (FileWriter writer = new FileWriter("src/main/resources/data/projets.csv")) {
+                for (int i = 0; i < projetIntituleList.size(); i++) {
+                    writer.write(String.format("%s,%s,%s",
+                            projetIntituleList.get(i),
+                            projetDateDebutList.get(i),
+                            projetDateFinList.get(i)));
+
+                    if (i < projetMembresList.size() && projetMembresList.get(i) != null && !projetMembresList.get(i).isEmpty()) {
+                        writer.write("," + projetMembresList.get(i).stream()
+                                .map(Membre::getNom)
+                                .collect(Collectors.joining(";")));
+                    } else {
+                        writer.write(",");
+                    }
+                    writer.write("\n");
+                }
+            } catch (IOException e) {
+                messageLabel.setText("Erreur lors de la suppression du projet");
+                return;
+            }
+
+            // Update employees file separately
+            try {
+                updateEmployeesFile(projetASupprimer);
+                messageLabel.setText("Projet supprimé avec succès");
+            } catch (IOException e) {
+                messageLabel.setText("Erreur lors de la mise à jour des employés");
+            }
+        } else {
+            messageLabel.setText("Veuillez sélectionner un projet");
+        }
+    }
+
+    private void updateEmployeesFile(String projetASupprimer) throws IOException {
+        List<String[]> employes = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/data/employes.csv"))) {
+            String ligne;
+            while ((ligne = reader.readLine()) != null) {
+                String[] details = ligne.split(",");
+                if (details.length >= 4 && details[3].trim().equals(projetASupprimer.trim())) {
+                    details[3] = "Pas de projet";
+                }
+                employes.add(details);
+            }
+        }
+
+        try (FileWriter writer = new FileWriter("src/main/resources/data/employes.csv")) {
+            for (String[] employe : employes) {
+                writer.write(String.join(",", employe) + "\n");
+            }
         }
     }
 

@@ -13,24 +13,15 @@ import java.util.List;
 
 public class ModifierProjet{
     private int projetIndex = -1;
-    @FXML
-    public Button boutton_modifierPRJ;
-    @FXML
-    public Button boutton_fermer;
-    @FXML
-    public TextField intituleField;
-    @FXML
-    public DatePicker dateDebut;
-    @FXML
-    public DatePicker dateFin;
-    @FXML
-    public TextField ancienIntituleField;
-    @FXML
-    public DatePicker ancienDateDebut;
-    @FXML
-    public DatePicker ancienDateFin;
-    @FXML
-    public Label messageLabel;
+    @FXML public Button boutton_modifierPRJ;
+    @FXML public Button boutton_fermer;
+    @FXML public TextField intituleField;
+    @FXML public DatePicker dateDebut;
+    @FXML public DatePicker dateFin;
+    @FXML public TextField ancienIntituleField;
+    @FXML public DatePicker ancienDateDebut;
+    @FXML public DatePicker ancienDateFin;
+    @FXML public Label messageLabel;
 
     private Projets projetsController;
     public void setProjetsController(Projets controller){

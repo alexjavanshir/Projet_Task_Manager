@@ -9,38 +9,32 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GestionnaireTache {
-
     private int projetIndex = -1;
-    @FXML
-    public Button boutton_fermer;
-    @FXML
-    public Button boutton_ajoutertache;
-    @FXML
-    public Button boutton_modifiertache;
-    @FXML
-    public Button boutton_supprimertache;
+    @FXML public Button boutton_fermer;
+    @FXML public Button boutton_ajoutertache;
+    @FXML public Button boutton_modifiertache;
+    @FXML public Button boutton_supprimertache;
 
-    @FXML
-    public Label messageLabel;
-    @FXML
-    public Label projetLabel;
-    @FXML
-    public ListView<String> nomTache;
-    @FXML
-    public ListView<String> descriptionTache;
-    @FXML
-    public ListView<String> membreTache;
-    @FXML
-    public ListView<String> statutTache;
+    @FXML public Label messageLabel;
+    @FXML public Label projetLabel;
+    @FXML public ListView<String> nomTache;
+    @FXML public ListView<String> descriptionTache;
+    @FXML public ListView<String> membreTache;
+    @FXML public ListView<String> statutTache;
 
+
+    final ObservableList<String> nomsTache = FXCollections.observableArrayList();
+    final ObservableList<String> descriptionsTache = FXCollections.observableArrayList();
+    final ObservableList<String> membresTache = FXCollections.observableArrayList();
+    final ObservableList<String> statutsTache = FXCollections.observableArrayList();
     private Projets projetsController;
 
-    public void setProjetsController(Projets controller){
+    public void setProjetsController(Projets controller) {
         this.projetsController = controller;
     }
 
@@ -50,18 +44,21 @@ public class GestionnaireTache {
         chargerTaches(projetIndex);
     }
 
+    private String getTachesFilePath() {
+        String projetIntitule = projetsController.projetIntituleList.get(projetIndex)
+                .replaceAll("\\s", "")
+                .replaceAll("é", "e")
+                .replaceAll("è", "e");
+        return "src/main/resources/data/" + projetIntitule + ".csv";
+    }
+
     private void chargerTaches(int projetIndex) {
         if (projetIndex < 0) {
             messageLabel.setText("Aucun projet sélectionné");
             return;
         }
-        String projetIntitule = projetsController.projetIntituleList.get(projetIndex).replaceAll("\\s", "").replaceAll("é","e").replaceAll("è","e");
-        String fichierTaches = "src/main/resources/data/"+projetIntitule + ".csv";
 
-        ObservableList<String> nomsTache = FXCollections.observableArrayList();
-        ObservableList<String> descriptionsTache = FXCollections.observableArrayList();
-        ObservableList<String> membresTache = FXCollections.observableArrayList();
-        ObservableList<String> statutsTache = FXCollections.observableArrayList();
+        String fichierTaches = getTachesFilePath();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fichierTaches))) {
             String ligne;
@@ -86,16 +83,78 @@ public class GestionnaireTache {
 
     @FXML
     public void ajouterTache() {
-    }
-    @FXML
-    public void modifierTache() {
-    }
-    @FXML
-    public void supprimerTache() {
+        Open opener = new Open();
+        AjouterTache ajouterTacheController = opener.open("ajouterTache", "Ajouter une tâche", true, AjouterTache.class);
+        if (ajouterTacheController != null) {
+            ajouterTacheController.setGestionnaireTacheController(this);
+            ajouterTacheController.setProjetDetails(projetLabel.getText(), nomsTache, descriptionsTache, membresTache, statutsTache, projetIndex);
+        }
     }
 
     @FXML
-    public void fermer(ActionEvent event){
+    public void modifierTache() {
+        int selectedIndex = nomTache.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            Open opener = new Open();
+            ModifierTache modifierTacheController = opener.open("modifierTache", "Modifier une tâche", true, ModifierTache.class);
+            if (modifierTacheController != null) {
+                modifierTacheController.setGestionnaireTacheController(this);
+                modifierTacheController.setTacheDetails(
+                        nomTache.getItems().get(selectedIndex),
+                        descriptionTache.getItems().get(selectedIndex),
+                        membreTache.getItems().get(selectedIndex),
+                        statutTache.getItems().get(selectedIndex),
+                        selectedIndex,
+                        projetIndex
+                );
+            }
+        } else {
+            messageLabel.setText("Veuillez sélectionner une tâche à modifier");
+        }
+    }
+
+    @FXML
+    public void supprimerTache() {
+        int selectedIndex = nomTache.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            // Create temporary lists to store all tasks
+            List<String[]> taches = new ArrayList<>();
+            String fichierTaches = getTachesFilePath();
+
+            // Read all tasks except the one to delete
+            try (BufferedReader reader = new BufferedReader(new FileReader(fichierTaches))) {
+                String ligne;
+                int currentIndex = 0;
+                while ((ligne = reader.readLine()) != null) {
+                    if (currentIndex != selectedIndex) {
+                        taches.add(ligne.split(",", -1));
+                    }
+                    currentIndex++;
+                }
+            } catch (IOException e) {
+                messageLabel.setText("Erreur lors de la lecture des tâches");
+                return;
+            }
+
+            // Write back all tasks except the deleted one
+            try (FileWriter writer = new FileWriter(fichierTaches)) {
+                for (String[] tache : taches) {
+                    writer.write(String.join(",", tache) + "\n");
+                }
+                messageLabel.setText("Tâche supprimée avec succès");
+
+                // Refresh the view
+                chargerTaches(projetIndex);
+            } catch (IOException e) {
+                messageLabel.setText("Erreur lors de la suppression de la tâche");
+            }
+        } else {
+            messageLabel.setText("Veuillez sélectionner une tâche à supprimer");
+        }
+    }
+
+    @FXML
+    public void fermer(ActionEvent event) {
         ((Stage) messageLabel.getScene().getWindow()).close();
     }
 }
