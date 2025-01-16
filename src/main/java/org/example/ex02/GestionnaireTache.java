@@ -90,7 +90,6 @@ public class GestionnaireTache {
             ajouterTacheController.setProjetDetails(projetLabel.getText(), nomsTache, descriptionsTache, membresTache, statutsTache, projetIndex);
         }
     }
-
     @FXML
     public void modifierTache() {
         int selectedIndex = nomTache.getSelectionModel().getSelectedIndex();
@@ -100,12 +99,12 @@ public class GestionnaireTache {
             if (modifierTacheController != null) {
                 modifierTacheController.setGestionnaireTacheController(this);
                 modifierTacheController.setTacheDetails(
+                        projetLabel.getText(),
                         nomTache.getItems().get(selectedIndex),
                         descriptionTache.getItems().get(selectedIndex),
                         membreTache.getItems().get(selectedIndex),
                         statutTache.getItems().get(selectedIndex),
-                        selectedIndex,
-                        projetIndex
+                        selectedIndex
                 );
             }
         } else {
@@ -117,11 +116,14 @@ public class GestionnaireTache {
     public void supprimerTache() {
         int selectedIndex = nomTache.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            // Create temporary lists to store all tasks
+            nomsTache.remove(selectedIndex);
+            descriptionsTache.remove(selectedIndex);
+            membresTache.remove(selectedIndex);
+            statutsTache.remove(selectedIndex);
+
             List<String[]> taches = new ArrayList<>();
             String fichierTaches = getTachesFilePath();
 
-            // Read all tasks except the one to delete
             try (BufferedReader reader = new BufferedReader(new FileReader(fichierTaches))) {
                 String ligne;
                 int currentIndex = 0;
@@ -135,15 +137,11 @@ public class GestionnaireTache {
                 messageLabel.setText("Erreur lors de la lecture des tâches");
                 return;
             }
-
-            // Write back all tasks except the deleted one
             try (FileWriter writer = new FileWriter(fichierTaches)) {
                 for (String[] tache : taches) {
                     writer.write(String.join(",", tache) + "\n");
                 }
                 messageLabel.setText("Tâche supprimée avec succès");
-
-                // Refresh the view
                 chargerTaches(projetIndex);
             } catch (IOException e) {
                 messageLabel.setText("Erreur lors de la suppression de la tâche");

@@ -2,12 +2,8 @@ package org.example.ex02;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,24 +11,25 @@ import java.io.IOException;
 import java.util.List;
 
 public class ModifierTache {
-    @FXML private TextField ancienNom;
-    @FXML private TextField ancienDescription;
-    @FXML private TextField ancienMembre;
-    @FXML private TextField ancienStatut;
+    private int tacheIndex = -1;
+    private String projetIntitule;
+
+    @FXML private Button boutton_modifier;
+    @FXML private Button boutton_fermer;
 
     @FXML private TextField newNom;
     @FXML private TextField newDescription;
     @FXML private ComboBox<String> newMembre;
     @FXML private ComboBox<String> newStatut;
 
+    @FXML private TextField ancienNom;
+    @FXML private TextField ancienDescription;
+    @FXML private TextField ancienMembre;
+    @FXML private TextField ancienStatut;
+
     @FXML private Label messageLabel;
-    @FXML private Button boutton_modifier;
-    @FXML private Button boutton_fermer;
 
     private GestionnaireTache gestionnaireTacheController;
-    private int tacheIndex;
-    private int projetIndex;
-    private String projetIntitule;
 
     @FXML
     public void initialize() {
@@ -43,15 +40,15 @@ public class ModifierTache {
         this.gestionnaireTacheController = controller;
     }
 
-    public void setTacheDetails(String nom, String description, String membre, String statut, int tacheIndex, int projetIndex) {
-        this.tacheIndex = tacheIndex;
-        this.projetIndex = projetIndex;
-        this.projetIntitule = gestionnaireTacheController.projetLabel.getText();
-
+    public void setTacheDetails(String projetIntitule, String nom, String description, String membre, String statut, int tacheIndex) {
+        this.projetIntitule = projetIntitule;
         ancienNom.setText(nom);
         ancienDescription.setText(description);
         ancienMembre.setText(membre);
         ancienStatut.setText(statut);
+        this.tacheIndex = tacheIndex;
+
+        chargerMembres(membre);
     }
 
     private void chargerMembres(String selectedMembre) {
@@ -70,28 +67,33 @@ public class ModifierTache {
     }
 
     @FXML
-    private void modifierTache(ActionEvent event) {
-        if (newNom.getText().isEmpty()||newDescription.getText().isEmpty()||newMembre.getValue() == null||newStatut.getValue() == null) {
-            try {
-                String fileName = projetIntitule.replaceAll("\\s", "")
-                        .replaceAll("é", "e")
-                        .replaceAll("è", "e");
-                String filePath = "src/main/resources/data/" + fileName + ".csv";
+    public void modifierTache(ActionEvent event) {
+        if (newNom.getText().isEmpty() || newDescription.getText().isEmpty() ||
+                newMembre.getValue() == null || newStatut.getValue() == null) {
+            messageLabel.setText("Veuillez remplir tous les champs");
+            return;
+        }
+        try {
+            String fileName = projetIntitule.replaceAll("\\s", "")
+                    .replaceAll("é", "e")
+                    .replaceAll("è", "e");
+            String filePath = "src/main/resources/data/" + fileName + ".csv";
 
-                List<String> lines = getStrings(filePath);
+            gestionnaireTacheController.nomsTache.set(tacheIndex, newNom.getText());
+            gestionnaireTacheController.descriptionsTache.set(tacheIndex, newDescription.getText());
+            gestionnaireTacheController.membresTache.set(tacheIndex, newMembre.getValue());
+            gestionnaireTacheController.statutsTache.set(tacheIndex, newStatut.getValue());
 
-                try (FileWriter writer = new FileWriter(filePath)) {
-                    for (String line : lines) {
-                        writer.write(line + "\n");
-                    }
+            List<String> lines = getStrings(filePath);
+
+            try (FileWriter writer = new FileWriter(filePath)) {
+                for (String line : lines) {
+                    writer.write(line + "\n");
                 }
-
-                messageLabel.setText("Tâche modifiée avec succès");
-                gestionnaireTacheController.setProjetsDetails(projetIntitule, projetIndex);
-                fermer();
-            } catch (IOException e) {
-                messageLabel.setText("Erreur lors de la modification de la tâche");
             }
+            fermer();
+        } catch (IOException e) {
+            messageLabel.setText("Erreur lors de la modification de la tâche");
         }
     }
 
@@ -104,21 +106,21 @@ public class ModifierTache {
 
             while ((line = reader.readLine()) != null) {
                 if (currentIndex == tacheIndex) {
-                    lines.add(String.format("%s,%s,%s",
-                            newDescription.getText(),
-                            newMembre.getValue(),
-                            newStatut.getValue()));
+                    lines.add(String.format("%s,%s,%s,%s\n", newNom.getText(), newDescription.getText(), newMembre.getValue(), newStatut.getValue()));
                 } else {
                     lines.add(line);
                 }
                 currentIndex++;
             }
+        } catch (IOException e){
+            e.printStackTrace();
         }
         return lines;
     }
 
     @FXML
-    private void fermer() {
-        ((Stage) messageLabel.getScene().getWindow()).close();
+    public void fermer() {
+        Stage stage = (Stage) messageLabel.getScene().getWindow();
+        stage.close();
     }
 }

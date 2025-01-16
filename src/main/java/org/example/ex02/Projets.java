@@ -182,7 +182,6 @@ public class Projets{
                 projetMembresList.remove(selectedIndex);
             }
 
-            // Update projects file
             try (FileWriter writer = new FileWriter("src/main/resources/data/projets.csv")) {
                 for (int i = 0; i < projetIntituleList.size(); i++) {
                     writer.write(String.format("%s,%s,%s",
@@ -203,8 +202,6 @@ public class Projets{
                 messageLabel.setText("Erreur lors de la suppression du projet");
                 return;
             }
-
-            // Update employees file separately
             try {
                 updateEmployeesFile(projetASupprimer);
                 messageLabel.setText("Projet supprimé avec succès");

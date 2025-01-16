@@ -59,7 +59,6 @@ public class ModifierProjet{
             }
             fermer();
         } catch(IOException e){
-            e.printStackTrace();
             messageLabel.setText("Erreur lors de la modification de l'employé");
         }
     }
